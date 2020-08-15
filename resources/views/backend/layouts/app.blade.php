@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
   <livewire:styles/>
+
+  <script src="{{ mix('js/app.js') }}"></script>
 </head>
 
 <body>
@@ -66,7 +68,6 @@
 
   <!-- Page Specific JS File -->
   <livewire:scripts/>
-  <script src="{{ mix('js/app.js') }}"></script>
   @stack('page-scripts')
 </body>
 </html>

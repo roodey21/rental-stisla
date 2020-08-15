@@ -11,7 +11,7 @@ class category extends Model
     
     protected $table = 'categories';
 
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'slug', 'parent_id'];
     
     /**
      * Return the sluggable configuration array for this model.
@@ -27,5 +27,19 @@ class category extends Model
         ];
     }
 
-    
+    public function parent()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function scopeGetParent($query)
+    {
+        return $query->whereNull('parent_id');
+    }
+
+    public function child()
+    {
+        //MENGGUNAKAN RELASI ONE TO MANY DENGAN FOREIGN KEY parent_id
+        return $this->hasMany(Category::class, 'parent_id');
+    }
 }
