@@ -28,7 +28,7 @@
                                 Nama Barang
                             </label>
                             <div class="col-sm-12 col-md-7">
-                                <input type="text" class="form-control">
+                                <input type="text" wire:model="product_name" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row mb-4">
@@ -36,10 +36,12 @@
                                 Merek
                             </label>
                             <div class="col-sm-12 col-md-7">
-                            <select class="form-control selectric">
-                                <option>Tech</option>
-                                <option>News</option>
-                                <option>Political</option>
+                            <select wire:model="brand_id" class="form-control selectric">
+                                @forelse ($brands as $brand)    
+                                    <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                @empty
+                                    <option value="">Belum ada Merek... Silahkan tambahkan merek terlebih dahulu</option>
+                                @endforelse
                             </select>
                             </div>
                         </div>
@@ -49,34 +51,14 @@
                             </label>
                             <div class="col-sm-12 col-md-7">
                                 <div class="selectgroup selectgroup-pills">
-                                    <label class="selectgroup-item">
-                                      <input type="checkbox" name="value" value="HTML" class="selectgroup-input" checked="">
-                                      <span class="selectgroup-button">HTML</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                      <input type="checkbox" name="value" value="CSS" class="selectgroup-input">
-                                      <span class="selectgroup-button">CSS</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                      <input type="checkbox" name="value" value="PHP" class="selectgroup-input">
-                                      <span class="selectgroup-button">PHP</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                      <input type="checkbox" name="value" value="JavaScript" class="selectgroup-input">
-                                      <span class="selectgroup-button">JavaScript</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                      <input type="checkbox" name="value" value="Ruby" class="selectgroup-input">
-                                      <span class="selectgroup-button">Ruby</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                      <input type="checkbox" name="value" value="Ruby" class="selectgroup-input">
-                                      <span class="selectgroup-button">Ruby</span>
-                                    </label>
-                                    <label class="selectgroup-item">
-                                      <input type="checkbox" name="value" value="C++" class="selectgroup-input">
-                                      <span class="selectgroup-button">C++</span>
-                                    </label>
+                                    @forelse ($categories as $category)
+                                        <label class="selectgroup-item">
+                                            <input type="checkbox" name="value" value="{{ $category->id }}" class="selectgroup-input" checked="">
+                                            <span class="selectgroup-button">{{ $category->name }}</span>
+                                        </label>
+                                    @empty
+                                        Kategori belum tersedia silahkan tabahkan beberapa kategori terlebih dahulu
+                                    @endforelse
                                 </div>
                             </div>
                         </div>
@@ -84,13 +66,13 @@
                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Harga Sewa</label>
                             <div class="col-sm-12 col-md-7">
                                 <div class="input-group">
-                                    <select class="custom-select" id="inputGroupSelect05">
-                                        <option selected>Choose...</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select wire.model="time" class="custom-select" id="inputGroupSelect05">
+                                        <option selected>Pilih Waktu</option>
+                                        <option value="1">12 Jam</option>
+                                        <option value="2">1 Hari</option>
+                                        <option value="3">2 Hari</option>
                                     </select>
-                                    <input type="text" class="form-control">
+                                    <input type="text" wire:model="price" class="form-control">
                                 </div>
                             </div>
                         </div>
@@ -113,9 +95,8 @@
                             <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Status</label>
                             <div class="col-sm-12 col-md-7">
                             <select class="form-control selectric">
-                                <option>Publish</option>
-                                <option>Draft</option>
-                                <option>Pending</option>
+                                <option value="1">Publish</option>
+                                <option value="0">Draft</option>
                             </select>
                             </div>
                         </div>

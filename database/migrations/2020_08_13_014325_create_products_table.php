@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->integer('stok');
             $table->string('image');
+            $table->boolean('status')->default(true);
             $table->string('slug');
             $table->timestamps();
         });
